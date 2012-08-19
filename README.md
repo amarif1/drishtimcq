@@ -1,5 +1,6 @@
-drshtimcq
+Drishti MCQ Engine
 =========
 
-MCQ Engine for Drishti'12
-Based on th project : https://github.com/FOSSEE/online_exam
+#MCQ Engine for Drishti'12
+
+#Based on the project : https://github.com/FOSSEE/online_exam
