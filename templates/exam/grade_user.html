@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %} Grading papers for {{ data.user.get_full_name.title }} {% endblock title %}
+
+{% block content %}
+
+<h1> Grading papers for {{ data.user.get_full_name.title }} </h1>
+
+<p> 
+Name: {{ data.user.get_full_name.title }}
+{% if data.profile %}
+(roll number: {{ data.profile.roll_number }}) <br/>
+{{ data.profile.position }},
+{{ data.profile.department }},
+{{ data.profile.institute }}
+{% endif %}
+</p>
+
+{% if data.papers %}
+
+{% for paper in data.papers %}
+
+<h2> Quiz: {{ paper.quiz.description }} </h2>
+
+<p>
+Questions correctly answered: {{ paper.get_answered_str }} <br/>
+Total attempts at questions: {{ paper.answers.count }} <br/>
+Marks obtained: {{ paper.get_total_marks }} <br/>
+Start time: {{ paper.start_time }} <br/>
+</p>
+
+{% if paper.answers.count %}
+<h3> Answers </h3>
+<form id="q{{ paper.quiz.id }}_form"
+    action="{{URL_ROOT}}/exam/grade_user/{{data.user.username}}/" method="post">
+{% csrf_token %}
+{% for question, answers in paper.get_question_answers.items %}
+<p><strong> 
+    <a href="{{URL_ROOT}}/admin/exam/question/{{question.id}}">
+        Question: {{ question.id }}. {{ question.summary }} </a> 
+    (Points: {{ question.points }})</strong> </p>
+{% if question.type == "mcq" %}
+<p> Choices: 
+{% for option in question.options.strip.splitlines %} {{option}}, {% endfor %}
+</p>
+<p>Student answer: {{ answers.0 }}</p>
+{% else %}{# non-mcq questions #}
+<pre>
+{% for answer in answers %}################################################################################
+{{ answer.answer.strip }}
+# Autocheck: {{ answer.error }}
+{% endfor %}</pre>
+{% endif %} {# if question.type #}
+{% with answers|last as answer %}
+Marks: <input id="q{{ question.id }}" type="text" 
+        name="q{{ question.id }}_marks" size="4"
+        value="{{ answer.marks }}" />
+{% endwith %}
+{% endfor %} {# for question, answers ... #}
+<h3>Teacher comments: </h3>
+<textarea id="comments_{{paper.quiz.id}}" rows="10" cols="80" 
+    name="comments_{{ paper.quiz.id }}">{{ paper.comments }}</textarea>
+<br/>
+<input type="submit" name="submit_{{paper.quiz.id}}" value="Save marks" />
+</form>
+{% endif %} {# if paper.answers.count #}
+
+{% endfor %} {# for paper in data.papers #}
+
+{% endif %} {# if data.papers #}
+
+{% if data.papers.count > 1 %}
+<a href="{{URL_ROOT}}/exam/monitor/">
+    Monitor quiz</a>
+{% else %}
+{% with data.papers.0 as paper %}
+<a href="{{URL_ROOT}}/exam/monitor/{{paper.quiz.id}}/">
+    Monitor quiz</a>
+{% endwith %}
+{% endif %}
+<br />
+<a href="{{URL_ROOT}}/admin/">Admin</a>
+{% endblock content %}
