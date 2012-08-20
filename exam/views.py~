@@ -13,7 +13,7 @@ from django.db.models import Sum
 
 # Local imports.
 from exam.models import Test, Question, QuestionPaper, Profile, Answer, User
-from exam.forms import UserRegisterForm
+from exam.forms import UserRegisterForm, UserLoginForm
 from exam.xmlrpc_clients import code_server
 from settings import URL_ROOT
 

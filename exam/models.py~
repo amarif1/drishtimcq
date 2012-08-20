@@ -26,7 +26,7 @@ class Question(models.Model):
     question = models.CharField(max_length=256)
 
     # The question text, should be valid HTML.
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True)
     
     # Number of points for the question.
     points = models.FloatField(default=1.0)

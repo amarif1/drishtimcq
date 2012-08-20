@@ -13,6 +13,10 @@ PWD_CHARS = letters + punctuation + digits
 class UserRegisterForm(forms.Form):
 
     drishti_id = forms.CharField(max_length=30)
+#    password = forms.CharField(max_length=30, 
+#                               widget=forms.PasswordInput())
+#    confirm_password = forms.CharField(max_length=30, 
+#                                       widget=forms.PasswordInput())
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     mobile_number = forms.CharField(max_length=20)
@@ -73,7 +77,7 @@ class UserRegisterForm(forms.Form):
         return c_pwd
 """
 
-"""
+
 class UserLoginForm(forms.Form):
     drishti_id = forms.CharField(max_length = 30)
 #    password = forms.CharField(max_length=30, widget=forms.PasswordInput())
@@ -87,4 +91,4 @@ class UserLoginForm(forms.Form):
             raise forms.ValidationError("Invalid Drishti ID")
 
         return user
-"""
+
