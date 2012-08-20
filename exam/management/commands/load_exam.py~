@@ -5,7 +5,7 @@ from os.path import basename
 from django.core.management.base import BaseCommand
 
 # Local imports.
-from exam.models import Question, Test
+from exam.models import Question, Quiz
 
 def clear_exam():
     """Deactivate all questions from the database."""
@@ -13,15 +13,15 @@ def clear_exam():
         question.active = False
         question.save()
         
-    # Deactivate old Tests.
-    for test in Test.objects.all():
-        test.active = False
-        test.save()
+    # Deactivate old quizzes.
+    for quiz in Quiz.objects.all():
+        quiz.active = False
+        quiz.save()
 
 def load_exam(filename):
-    """Load questions and test from the given Python file.  The Python file 
+    """Load questions and quiz from the given Python file.  The Python file 
     should declare a list of name "questions" which define all the questions 
-    in pure Python.  It can optionally load a Test from an optional 'test' 
+    in pure Python.  It can optionally load a Quiz from an optional 'quiz' 
     object.
     """
     # Simply exec the given file and we are done.
@@ -34,8 +34,8 @@ def load_exam(filename):
     for question in questions:
         question.save()
         
-    if 'test' in locals():
-        test.save()
+    if 'quiz' in locals():
+        quiz.save()
     
 class Command(BaseCommand):
     args = '<q_file1.py q_file2.py>'

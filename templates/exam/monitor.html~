@@ -37,7 +37,7 @@
     <tr>
         <th> Name </th>
         <th> Drishti ID </th>
-        <th> Mobile Number</th>  
+        <th> Mobile </th>  
         <th> Institution </th>
         <th> Questions answered </th> 
         <th> Attempts </th>
@@ -49,7 +49,7 @@
                 {{ paper.user.get_full_name.title }}</a> </td>
         <td> <a href="{{URL_ROOT}}/exam/user_data/{{paper.user.username}}">
                 {{ paper.user.username }}</a> </td>
-        <td> {{ paper.profile.mobile_number }} </td>
+        <td> {{ paper.profile.phone }} </td>
         <td> {{ paper.profile.institution }} </td>
         <td> {{ paper.get_answered_str }} </td> 
         <td> {{ paper.answers.count }} </td>

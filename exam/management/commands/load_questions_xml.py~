@@ -25,7 +25,7 @@ def clear_questions():
 
 def load_questions_xml(filename):
     """Load questions from the given XML file."""
-    q_bank = parse(filename).getElementsByTagName("entry")
+    q_bank = parse(filename).getElementsByTagName("quest")
 
     for questions in q_bank:
 

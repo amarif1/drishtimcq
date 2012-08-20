@@ -1,6 +1,6 @@
 <question_bank>
 
-<entry>
+<quest>
 <question>
 Which of the following is/are storage class?
 </question>
@@ -17,9 +17,9 @@ All of Above
 <right_response>
 Static
 </right_response>
-</entry>
+</quest>
 
-<entry>
+<quest>
 <question>
 What will the output of following code?
 </question>
@@ -39,7 +39,7 @@ y = ++y;
 <right_response>
 11, 16
 </right_response>
-</entry>
+</quest>
 
 
 </question_bank>

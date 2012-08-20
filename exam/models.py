@@ -75,29 +75,29 @@ class Answer(models.Model):
         return self.answer
 
 ################################################################################
-class Quiz(models.Model):
-    """A quiz that students will participate in.  One can think of this 
+class Test(models.Model):
+    """A test that students will participate in.  One can think of this 
     as the "examination" event.
     """
     
-    # The starting/ending date of the quiz.
-    start_date = models.DateField("Date of the quiz")
+    # The starting/ending date of the test
+    start_date = models.DateField("Date of the test")
     
     # This is always in minutes.
-    duration = models.IntegerField("Duration of quiz in minutes", default=20)
+    duration = models.IntegerField("Duration of test in minutes", default=20)
     
-    # Is the quiz active.  The admin should deactivate the quiz once it is 
+    # Is the test active.  The admin should deactivate the test once it is 
     # complete.
     active = models.BooleanField(default=True)
     
-    # Description of quiz.
+    # Description of test.
     description = models.CharField(max_length=256)
     
     class Meta:
-        verbose_name_plural = "Quizzes"
+        verbose_name_plural = "Tests"
     
     def __unicode__(self):
-        desc = self.description or 'Quiz'
+        desc = self.description or 'Test'
         return '%s: on %s for %d minutes'%(desc, self.start_date, self.duration)
 
     
@@ -112,8 +112,8 @@ class QuestionPaper(models.Model):
     # data.
     profile = models.ForeignKey(Profile)
     
-    # The Quiz to which this question paper is attached to.
-    quiz = models.ForeignKey(Quiz)
+    # The Test to which this question paper is attached to.
+    test = models.ForeignKey(Test)
     
     # The time when this paper was started by the user.
     start_time = models.DateTimeField()
@@ -191,7 +191,7 @@ class QuestionPaper(models.Model):
         except AttributeError:
             # total_seconds is new in Python 2.7. :(
             secs = dt.seconds + dt.days*24*3600
-        total = self.quiz.duration*60.0
+        total = self.test.duration*60.0
         remain = max(total - secs, 0)
         return int(remain)
 

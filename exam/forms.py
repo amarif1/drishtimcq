@@ -53,7 +53,7 @@ class UserRegisterForm(forms.Form):
         new_profile = Profile(user=new_user)
         new_profile.mobile_number = cleaned_data["mobile_number"]
         new_profile.institution = cleaned_data["institution"]
-        new_profile.department = cleaned_data["department"]
+        new_profile.semester = cleaned_data["semester"]
 	new_profile.email = cleaned_data['email']
 
         new_profile.save()

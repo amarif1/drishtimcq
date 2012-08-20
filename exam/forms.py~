@@ -22,7 +22,7 @@ class UserRegisterForm(forms.Form):
     mobile_number = forms.CharField(max_length=20)
     email = forms.EmailField()
     institution = forms.CharField(max_length=128)
-    department = forms.CharField(max_length=64)
+    semester = forms.CharField(max_length=64)
     
 
     def clean_username(self):
