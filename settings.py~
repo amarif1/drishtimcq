@@ -188,6 +188,6 @@ LOGGING = {
 AUTH_PROFILE_MODULE = 'exam.Profile'
 
 AUTHENTICATION_BACKENDS = (
-    'drishtimcq.backends.MyLoginBackend',
+    'drishtimcq.backends.NoPasswordBackend',
     'django.contrib.auth.backends.ModelBackend',
 )

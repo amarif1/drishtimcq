@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     mobile_number = models.CharField(max_length=20)
     institution = models.CharField(max_length=128)
-    semester = models.CharField(max_length=10)
+    department = models.CharField(max_length=64)
     email = models.EmailField()
 
 
@@ -23,7 +23,7 @@ class Question(models.Model):
     """A question in the database."""
 
     # A one-line summary of the question.
-    question = models.CharField(max_length=256)
+    summary = models.CharField(max_length=256)
 
     # The question text, should be valid HTML.
     description = models.TextField(default=' ')
@@ -48,7 +48,7 @@ class Question(models.Model):
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return self.question
+        return self.summary
 
 
 ################################################################################
@@ -203,7 +203,7 @@ class QuestionPaper(models.Model):
 
     def get_total_marks(self):
         """Returns the total marks earned by student for this paper."""
-        return sum([x.marks for x in self.answers.filter(marks__gte=-0.25)])
+        return sum([x.marks for x in self.answers.filter(marks__gt=0.0)])
 
     def get_question_answers(self):
         """Return a dictionary with keys as questions and a list of the corresponding
