@@ -191,5 +191,3 @@ AUTHENTICATION_BACKENDS = (
     'drishtimcq.backends.MyLoginBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-
-WSGI_APPLICATION = "drishtimcq.wsgi.application"

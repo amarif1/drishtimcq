@@ -38,11 +38,10 @@ User IP address: {{ paper.user_ip }}
 <p> Choices: 
 {% for option in question.options.strip.splitlines %} {{option}}, {% endfor %}
 </p>
-
+<p>Student Response: {{ answer.answer.strip }}</p>
  
 {% for answer in answers %}
 <p>Right Response: {{ question.right_response.strip }}</p>
-<p>Student Response: {{ answer.answer.strip }}</p>
 <p>Result: {{ answer.error }}</p>
 {% endfor %}
 {% with answers|last as answer %}

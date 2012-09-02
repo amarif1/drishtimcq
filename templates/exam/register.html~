@@ -31,7 +31,7 @@ Please provide the following details.
 
 <p> We hope you enjoy taking this test.</p>
 
-<input type="submit" value="Start test!" style="height: 50px; width: 300px;" />
+<input type="submit" value="Start test!" style="height: 35px; width: 500px;" />
 </form>
 
 {% endblock content %}

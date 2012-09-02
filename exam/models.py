@@ -59,11 +59,15 @@ class Answer(models.Model):
     question = models.ForeignKey(Question)
     
     # The answer submitted by the user.
-    answer = models.TextField()
+    answer = models.TextField(null=True, blank=True)
 
     # Error message when auto-checking the answer.
     error = models.TextField()
 
+    # attempted
+    attempted = models.BooleanField(default=False)
+
+	
     # Marks obtained for the answer.  This can be changed by the teacher if the
     # grading is manual.
     marks = models.FloatField(default=0.0)
@@ -162,10 +166,13 @@ class QuestionPaper(models.Model):
         else:
             self.questions_answered = str(question_id)
         qs = self.questions.split('|')
-        qs.remove(unicode(question_id))
-        self.questions = '|'.join(qs)
+	try:
+	    qs.remove(unicode(question_id))
+	except Exception:
+	    return ''
+	self.questions = '|'.join(qs)
         self.save()
-        if len(qs) == 0:
+	if len(qs) == 0:
             return ''
         else:
             return qs[0]

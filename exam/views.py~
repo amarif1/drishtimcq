@@ -10,10 +10,11 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.http import Http404
 from django.db.models import Sum
+from django.views.decorators.cache import cache_control
 
 # Local imports.
 from exam.models import Test, Question, QuestionPaper, Profile, Answer, User
-from exam.forms import UserRegisterForm, UserLoginForm
+from exam.forms import UserRegisterForm
 from exam.xmlrpc_clients import code_server
 from settings import URL_ROOT
 
@@ -112,8 +113,17 @@ def user_register(request):
         return my_render_to_response('exam/login.html', context,
                                      context_instance=RequestContext(request))
 """
+def show_intro(request,user):
+    # Show the user the intro page.    
+    context = {'user': user}
+    ci = RequestContext(request)
+    my_render_to_response('exam/intro.html', context, 
+                                     context_instance=ci)
+
+
 def start(request):
     user = request.user
+    show_intro(request,user)
     try:
         # Right now the app is designed so there is only one active test
         # at a particular time.
@@ -147,12 +157,11 @@ def start(request):
         
         new_paper.questions = "|".join(questions)
         new_paper.save()
+
+	old_paper = QuestionPaper.objects.get(user=user, test=test)
+        q = old_paper.current_question()
+        return show_question(request, q)
     
-        # Show the user the intro page.    
-        context = {'user': user}
-        ci = RequestContext(request)
-        return my_render_to_response('exam/intro.html', context, 
-                                     context_instance=ci)
 
 def question(request, q_id):
     user = request.user
@@ -185,6 +194,7 @@ def show_question(request, q_id):
     else:
         return question(request, q_id)
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def check(request, q_id):
     user = request.user
     if not user.is_authenticated():
@@ -206,38 +216,23 @@ def check(request, q_id):
     # If we were not skipped, we were asked to check.  For any non-mcq
     # questions, we obtain the results via XML-RPC with the code executed
     # safely in a separate process (the code_server.py) running as nobody.
-    
-    success = True # Only one attempt allowed for MCQ's.
-    if answer.strip() == question.right_response.strip():
-        new_answer.correct = True
-        new_answer.marks = question.points
-        new_answer.error = 'Correct answer'
-    else:
-        new_answer.correct = False
-        new_answer.marks = -(question.neg_points)
-        new_answer.error = 'Incorrect answer'
+    if not new_answer.attempted and answer  :
+     	if answer.strip() == question.right_response.strip():
+        	new_answer.correct = True
+        	new_answer.marks = question.points
+        	new_answer.error = 'Correct answer'
+    	else:
+       		new_answer.correct = False
+        	new_answer.marks = -(question.neg_points)
+        	new_answer.error = 'Incorrect answer'
         
         
-    new_answer.save()
+    	new_answer.attempted = True # Only one attempt allowed for MCQ's.
+        new_answer.save()
 
-    if not success: # Should only happen for non-mcq questions.
-        time_left = paper.time_left()
-        if time_left == 0:
-            return complete(request, reason='Your time is up!')
-        if not paper.test.active:
-            return complete(request, reason='The test has been deactivated!')
-            
-        context = {'question': question, 'error_message': err_msg,
-                   'paper': paper, 'last_attempt': answer,
-                   'test_name': paper.test.description,
-                   'time_left': time_left}
-        ci = RequestContext(request)
 
-        return my_render_to_response('exam/question.html', context, 
-                                     context_instance=ci)
-    else:
-        next_q = paper.completed_question(question.id)
-        return show_question(request, next_q)
+    next_q = paper.completed_question(question.id)
+    return show_question(request, next_q)
         
 def quit(request):
     return my_render_to_response('exam/quit.html', 
