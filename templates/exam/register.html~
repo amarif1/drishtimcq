@@ -29,6 +29,10 @@
 
     <li> You are <strong>NOT allowed</strong> to use any internet 
     resources like google etc.</strong> </li>
+
+    <li> You cannot reattempt a question after hitting <i>Submit answer</i> button.</li>
+
+    <li> You can cycle through the unattempted questions by hitting <i>Skip question</i> button.</li>
     
     <li> Do not copy or share the questions or answers with anyone until the
     test is complete <strong>for everyone</strong>.</li>

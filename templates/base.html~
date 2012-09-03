@@ -15,9 +15,9 @@
 {% endblock %}
 </head>
 <div id="header">
-  <h1>
-	Drishti 
-  </h1>
+<div id="logo">
+	<img src="{{ URL_ROOT }}/static/exam/logo.png" />
+</div>
 </div>
 <body {% block onload %}{% endblock %}>
     <div class=box>
