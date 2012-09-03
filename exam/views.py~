@@ -69,8 +69,12 @@ def user_register(request):
     user = request.user
     if user.is_authenticated():
         return my_redirect("/exam/start/")
+    form = UserRegisterForm()
+    return my_render_to_response('exam/register.html',
+                {'form':form},
+                context_instance=RequestContext(request))
 
-    if request.method == "POST":
+"""    if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
@@ -84,11 +88,8 @@ def user_register(request):
             return my_render_to_response('exam/register.html',
                 {'form':form},
                 context_instance=RequestContext(request))
-    else:
-        form = UserRegisterForm()
-        return my_render_to_response('exam/register.html',
-                {'form':form},
-                context_instance=RequestContext(request))
+    else: """
+
 
 """def user_login(request):
     Take the credentials of the user and log the user in.
@@ -113,17 +114,9 @@ def user_register(request):
         return my_render_to_response('exam/login.html', context,
                                      context_instance=RequestContext(request))
 """
-def show_intro(request,user):
-    # Show the user the intro page.    
-    context = {'user': user}
-    ci = RequestContext(request)
-    my_render_to_response('exam/intro.html', context, 
-                                     context_instance=ci)
-
 
 def start(request):
     user = request.user
-    show_intro(request,user)
     try:
         # Right now the app is designed so there is only one active test
         # at a particular time.

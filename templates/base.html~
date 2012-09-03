@@ -16,7 +16,7 @@
 </head>
 <div id="header">
   <h1>
-	Drishti 2012 
+	Drishti 
   </h1>
 </div>
 <body {% block onload %}{% endblock %}>

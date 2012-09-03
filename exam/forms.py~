@@ -13,16 +13,13 @@ PWD_CHARS = letters + punctuation + digits
 class UserRegisterForm(forms.Form):
 
     drishti_id = forms.CharField(max_length=30)
-#    password = forms.CharField(max_length=30, 
-#                               widget=forms.PasswordInput())
-#    confirm_password = forms.CharField(max_length=30, 
-#                                       widget=forms.PasswordInput())
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     mobile_number = forms.CharField(max_length=20)
     email = forms.EmailField()
     institution = forms.CharField(max_length=128)
     semester = forms.CharField(max_length=64)
+    team = forms.CharField(widget=forms.Textarea,blank=True)
     
 
     def clean_username(self):
@@ -55,6 +52,7 @@ class UserRegisterForm(forms.Form):
         new_profile.institution = cleaned_data["institution"]
         new_profile.semester = cleaned_data["semester"]
 	new_profile.email = cleaned_data['email']
+	new_profile.team = cleaned_data['team']
 
         new_profile.save()
 
@@ -77,7 +75,7 @@ class UserRegisterForm(forms.Form):
         return c_pwd
 """
 
-
+"""
 class UserLoginForm(forms.Form):
     drishti_id = forms.CharField(max_length = 30)
 #    password = forms.CharField(max_length=30, widget=forms.PasswordInput())
@@ -91,4 +89,4 @@ class UserLoginForm(forms.Form):
             raise forms.ValidationError("Invalid Drishti ID")
 
         return user
-
+"""

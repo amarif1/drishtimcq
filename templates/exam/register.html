@@ -4,27 +4,42 @@
 
 {% block content %}
 <h1> Welcome to Drishti 2012! </h1>
-Please provide the following details.
+<h2>Instructions</h2>
+<ul>
+    <li> Participants are required to register before attempting this test. </li>
+    
+    <li> For <strong>team </strong>events, fill in the details of the team representative. </li>
+    
+    <li> Add Full Name and College(in brackets) of team members, seperated by comma in the field <i>Team</i></li>
+    
+    <li> The team representative will be contacted for any further information and clarification. </li>
+
+    <li> Individual participants may leave the field <i>Team</i> empty. </li>
+
+</ul>
 <form action="" method="post">
 {% csrf_token %}
-
 <table>
 {{ form.as_table }}
 </table>
-<h2>Important rules and instructions</h2>
+<h2>Rules</h2>
 <ul>
     
-    <li> Do <strong>NOT</strong> hit the back button of the browser during the test. Doing so will log you out of the test </li>
+    <li> Do <strong>NOT</strong> hit the back button of the browser during the test.Doing so will <strong>log you out</strong> of the test. </li>
 
     <li> You are <strong>NOT allowed</strong> to use any internet 
     resources like google etc.</strong> </li>
+
+    <li> You cannot reattempt a question after hitting <i>Submit answer</i> button.</li>
+
+    <li> You can cycle through the unattempted questions by hitting <i>Skip question</i> button.</li>
     
     <li> Do not copy or share the questions or answers with anyone until the
     test is complete <strong>for everyone</strong>.</li>
     
-    <li> All your attempts at the questions are logged. 
-    Do not try to outsmart and break the testing system.  If you do, we know
-    who you are and we will expell you from the course.  You have been warned.
+    <li> All your attempts at the questions are logged.
+    Do not try to outsmart and break this system. <br/> If you do, we know
+    who you are and we will expell you from the competition.  You have been warned.
     </li>
     
 </ul>

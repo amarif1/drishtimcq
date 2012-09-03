@@ -39,7 +39,6 @@
         <th> Drishti ID </th>
         <th> Mobile Number</th>  
         <th> Institution </th>
-	<th> Team </th>
         <th> Questions answered </th> 
         <th> Attempts </th>
         <th> Total marks </th>
@@ -52,7 +51,6 @@
                 {{ paper.user.username }}</a> </td>
         <td> {{ paper.profile.mobile_number }} </td>
         <td> {{ paper.profile.institution }} </td>
-	<td> {{ paper.profile.team }} </td>
         <td> {{ paper.get_answered_str }} </td> 
         <td> {{ paper.answers.count }} </td>
 	<td> {{ paper.get_total_marks }} </td>

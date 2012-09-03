@@ -24,8 +24,8 @@ Static
 What will the output of following code?
 </question>
 <description>
-int x = 10, y = 15;
-x = x++;
+int x = 10, y = 15; &#xA;
+x = x++; &#xA;
 y = ++y;
 </description>
 <points>1</points>
@@ -47,11 +47,11 @@ y = ++y;
 What is the output of the following program?
 </question>
 <description>
-main ( )
-{
-int x = 2, y = 5;
-if (x &lt; y ) return (x = x+y); else printf (“z1”);
-printf(“z2”);
+main ( )&#xA;
+{&#xA;
+&#9;int x = 2, y = 5; &#xA;
+&#9;if (x &lt; y ) return (x = x+y); else printf (“z1”); &#xA;
+&#9;printf(“z2”); &#xA;
 }
 
 </description>
@@ -136,15 +136,15 @@ If x is one dimensional array, then pick up the correct answer
 What will be the output of the following code segment, if any?
 </question>
 <description>
-myfunc ( struct test t) {
-strcpy(t.s, “world”);
-}
-main( ) {
-struct test { char s[10]; } t;
-strcpy(t.s, “Hello”);
-printf(“%s”, t.s);
-myfunc(t);
-printf(“%s”, t.s);
+myfunc ( struct test t) {&#xA;
+&#9;strcpy(t.s, “world”);&#xA;
+}&#xA;
+main( ) {&#xA;
+struct test { char s[10]; } t;&#xA;
+strcpy(t.s, “Hello”);&#xA;
+printf(“%s”, t.s);&#xA;
+myfunc(t);&#xA;
+printf(“%s”, t.s);&#xA;
 }
 </description>
 <points>1</points>

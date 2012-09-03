@@ -169,7 +169,7 @@ class QuestionPaper(models.Model):
 	try:
 	    qs.remove(unicode(question_id))
 	except Exception:
-	    print " fdf" 
+	    return ''
 	self.questions = '|'.join(qs)
         self.save()
 	if len(qs) == 0:

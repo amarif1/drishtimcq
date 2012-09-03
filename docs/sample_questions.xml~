@@ -50,9 +50,10 @@ What is the output of the following program?
 main ( )
 {
 int x = 2, y = 5;
-if (x < y) return (x = x+y); else printf (“z1”);
+if (x &lt; y ) return (x = x+y); else printf (“z1”);
 printf(“z2”);
 }
+
 </description>
 <points>1</points>
 <neg_points>0.25</neg_points>
@@ -95,7 +96,7 @@ main ()
 { int d = 1;
 do
 printf(“%d\n”, d++);
-while (d < = 9);}
+while (d &lt; = 9);}
 </description>
 <points>1</points>
 <neg_points>0.25</neg_points>
@@ -120,13 +121,13 @@ If x is one dimensional array, then pick up the correct answer
 <points>1</points>
 <neg_points>0.25</neg_points>
 <options>
-*(x + i) is same as &x[i]
-*&x[i] is same as x + i
+*(x + i) is same as &amp;x[i]
+*&amp;x[i] is same as x + i
 *(x + i) is same as x[i] +1
 *(x + i) is same as *x[i]
 </options>
 <right_response>
-*(x + i) is same as &x[i]
+*(x + i) is same as &amp;x[i]
 </right_response>
 </entry>
 

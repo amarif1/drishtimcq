@@ -69,7 +69,6 @@ def user_register(request):
     user = request.user
     if user.is_authenticated():
         return my_redirect("/exam/start/")
-
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -89,6 +88,7 @@ def user_register(request):
         return my_render_to_response('exam/register.html',
                 {'form':form},
                 context_instance=RequestContext(request))
+
 
 """def user_login(request):
     Take the credentials of the user and log the user in.

@@ -10,6 +10,7 @@ class Profile(models.Model):
     institution = models.CharField(max_length=128)
     semester = models.CharField(max_length=10)
     email = models.EmailField()
+    team = models.TextField(null=True, blank=True)
 
 
 #QUESTION_TYPE_CHOICES = (

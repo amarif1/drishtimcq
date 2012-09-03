@@ -19,6 +19,7 @@ class UserRegisterForm(forms.Form):
     email = forms.EmailField()
     institution = forms.CharField(max_length=128)
     semester = forms.CharField(max_length=64)
+    team = forms.CharField(widget=forms.Textarea,required=False)
     
 
     def clean_username(self):
@@ -51,6 +52,7 @@ class UserRegisterForm(forms.Form):
         new_profile.institution = cleaned_data["institution"]
         new_profile.semester = cleaned_data["semester"]
 	new_profile.email = cleaned_data['email']
+	new_profile.team = cleaned_data['team']
 
         new_profile.save()
 
