@@ -8,16 +8,14 @@
 </title>
 {% block meta %}
 {% endblock %}
-<link rel="stylesheet" href="{{ URL_ROOT }}/static/exam/css/base.css" type="text/css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}static/exam/css/base.css" type="text/css" />
 {% block css %}
 {% endblock %}
 {% block script %}
 {% endblock %}
 </head>
 <div id="header">
-<div id="logo">
-	<img src="{{ URL_ROOT }}/static/exam/logo.png" />
-</div>
+	<img src="{{ STATIC_URL }}static/exam/logo.png" />
 </div>
 <body {% block onload %}{% endblock %}>
     <div class=box>

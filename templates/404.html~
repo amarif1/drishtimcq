@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Oops! Something went wrong!</h3><br />
+<h3>Oops! You seem to have landed on a wrong page! May be a wrong URL!</h3><br/>
 Free Advice:<br />
 Rise your hands and keep on waving until a volunteer walks to you!<br/>
 {% endblock %}

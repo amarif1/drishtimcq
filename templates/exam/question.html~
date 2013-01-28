@@ -83,9 +83,9 @@ you have  {{ paper.questions_left }} question(s) left in {{ quiz_name }}.</p>
     
     <li> Do <strong>NOT</strong> hit the back button of the browser during the test.Doing so will <strong>log you out</strong> of the test. </li>
 
-    <li> You cannot reattempt a question after hitting <i>Submit answer</i>.</li>
+    <li> You cannot reattempt a question after hitting <i>Submit answer</i> button.</li>
 
-    <li> You can cycle through the unattempted questions by hitting <i>Skip question</i>.</li>
+    <li> You can cycle through the unattempted questions by hitting <i>Skip question</i> button.</li>
            
 </ul>
 {% endblock content %}

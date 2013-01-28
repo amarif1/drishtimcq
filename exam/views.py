@@ -240,7 +240,7 @@ def complete(request, reason=None):
         # Logout the user and quit with the message given.
         logout(request)
         context = {'message': message}
-        return my_render_to_response('exam/complete.html', context)
+        return my_render_to_response('exam/complete.html',context,context_instance=RequestContext(request))
     else:
         return my_redirect('/exam/')
 

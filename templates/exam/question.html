@@ -50,7 +50,7 @@ function update_time()
 {% block content %}
 <h3> {{ question.question }} </h3>
 
-<p>{{ question.description|safe }}
+<pre><p>{{ question.description|safe }}</pre>
 <br/>
 (Marks: {{ question.points }}) </p>
 
